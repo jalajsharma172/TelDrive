@@ -1,0 +1,3 @@
+# No special linker configuration needed for desktop builds.
+# cdylib/staticlib crate types have been removed, eliminating the
+# Windows PE ordinal overflow (max 65535) that plagued the GNU linker.
