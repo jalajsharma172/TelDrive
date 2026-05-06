@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Folder, HardDrive, Settings, Search, UploadCloud, Bell, File, Image, FileText, FileSpreadsheet, LayoutGrid, List } from 'lucide-react';
 import { motion } from 'framer-motion';
 
