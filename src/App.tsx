@@ -3,7 +3,7 @@ import { Grid, Settings, Plus, RefreshCw, LogOut, FileText, Folder, ShieldCheck,
 
 export default function App() {
   const [activeFolder, setActiveFolder] = useState('PPT');
-  
+
   const [folders, setFolders] = useState([
     { name: 'Saved Messages', icon: Inbox, id: 'saved' },
     { name: 'PPT', icon: Folder, id: 'ppt' },
@@ -44,7 +44,7 @@ export default function App() {
       let type = 'unknown';
       let color = 'text-gray-400';
       const name = file.name.toLowerCase();
-      
+
       if (name.endsWith('.pdf')) {
         type = 'pdf'; color = 'text-red-400';
       } else if (name.endsWith('.ppt') || name.endsWith('.pptx')) {
@@ -114,14 +114,13 @@ export default function App() {
 
         <nav className="flex-1 py-2 px-3 space-y-1 overflow-y-auto">
           {folders.map((folder) => (
-            <button 
+            <button
               key={folder.id}
               onClick={() => setActiveFolder(folder.name)}
-              className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg transition-colors ${
-                activeFolder === folder.name 
-                  ? 'bg-[#1c2230] text-[#eab308]' 
+              className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg transition-colors ${activeFolder === folder.name
+                  ? 'bg-[#1c2230] text-[#eab308]'
                   : 'text-[#8b949e] hover:bg-[#1a202c] hover:text-gray-200'
-              }`}
+                }`}
             >
               <folder.icon size={18} className={activeFolder === folder.name ? 'text-[#eab308]' : 'text-[#8b949e]'} />
               <span className="font-medium text-[13px] truncate">{folder.name}</span>
@@ -130,14 +129,14 @@ export default function App() {
         </nav>
 
         <div className="p-4 space-y-5 border-t border-[#1e2532]">
-          <button 
+          <button
             onClick={handleCreateFolder}
             className="w-full flex items-center gap-2 justify-center py-2 rounded border border-[#1e2532] text-[#8b949e] hover:bg-[#1a202c] hover:text-white transition-colors text-[13px] font-medium"
           >
             <Plus size={16} />
             Create Folder
           </button>
-          
+
           <div className="flex items-center gap-2 text-[11px] font-medium text-[#8b949e] px-1">
             <div className="w-1.5 h-1.5 rounded-full bg-emerald-500"></div>
             Connected to Telegram
@@ -159,8 +158,8 @@ export default function App() {
               <span>Used Today:</span>
             </div>
             <div className="w-full h-1 bg-[#1e2532] rounded-full overflow-hidden">
-              <div 
-                className="h-full bg-[#4b5563] transition-all duration-500" 
+              <div
+                className="h-full bg-[#4b5563] transition-all duration-500"
                 style={{ width: `${Math.min(100, (totalBytesUsed / (2.5 * 1024 * 1024 * 1024)) * 100)}%` }}
               />
             </div>
@@ -181,17 +180,17 @@ export default function App() {
             <span className="mx-2 text-[#4b5563]">/</span>
             <span className="text-white">{activeFolder}</span>
           </div>
-          
+
           <div className="flex-1 max-w-[400px] px-8">
             <div className="relative">
-              <input 
-                type="text" 
-                placeholder="Search files..." 
+              <input
+                type="text"
+                placeholder="Search files..."
                 className="w-full bg-[#181d27] border border-[#262f40] rounded py-1.5 px-4 text-[13px] text-white placeholder-[#6b7280] focus:outline-none focus:border-blue-500/50 transition-colors"
               />
             </div>
           </div>
-          
+
           <div className="flex items-center gap-5 text-[#8b949e]">
             <button className="hover:text-white transition-colors"><Inbox size={18} /></button>
             <button className="hover:text-white transition-colors"><Grid size={18} /></button>
@@ -218,16 +217,16 @@ export default function App() {
           {/* Grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
             {currentFolderFiles.length === 0 && (
-               <div className="col-span-full py-12 flex flex-col items-center justify-center text-[#8b949e]">
-                 <Folder size={48} className="mb-4 opacity-50" />
-                 <p className="text-[14px]">This folder is empty</p>
-                 <p className="text-[12px] mt-1 opacity-70">Upload a file to get started</p>
-               </div>
+              <div className="col-span-full py-12 flex flex-col items-center justify-center text-[#8b949e]">
+                <Folder size={48} className="mb-4 opacity-50" />
+                <p className="text-[14px]">This folder is empty</p>
+                <p className="text-[12px] mt-1 opacity-70">Upload a file to get started</p>
+              </div>
             )}
 
             {currentFolderFiles.map((file) => (
-              <div 
-                key={file.id} 
+              <div
+                key={file.id}
                 className="bg-[#181d27] border border-[#222a38] rounded-xl p-4 flex flex-col group hover:bg-[#1c2230] hover:border-[#374151] transition-all cursor-pointer relative h-[180px]"
               >
                 {/* Hover actions */}
@@ -236,7 +235,7 @@ export default function App() {
                   <button onClick={(e) => handleDownloadFile(file, e)} className="text-[#8b949e] hover:text-white p-1 bg-[#131720]/80 rounded"><Download size={14} /></button>
                   <button onClick={(e) => handleDeleteFile(file.id, e)} className="text-[#8b949e] hover:text-red-400 p-1 bg-[#131720]/80 rounded"><Trash2 size={14} /></button>
                 </div>
-                
+
                 {/* Circular selection indicator placeholder */}
                 <div className="absolute top-3 left-3 w-4 h-4 rounded-full border border-[#2d3748] group-hover:border-[#4a5568] opacity-50 transition-colors"></div>
 
@@ -260,16 +259,16 @@ export default function App() {
             ))}
 
             {/* Hidden file input */}
-            <input 
-              type="file" 
-              multiple 
-              className="hidden" 
-              ref={fileInputRef} 
-              onChange={handleFileUpload} 
+            <input
+              type="file"
+              multiple
+              className="hidden"
+              ref={fileInputRef}
+              onChange={handleFileUpload}
             />
 
             {/* Upload File Card */}
-            <button 
+            <button
               onClick={() => fileInputRef.current?.click()}
               className="border border-dashed border-[#2d3748] hover:border-[#4a5568] hover:bg-[#1a202c] rounded-xl p-4 flex flex-col items-center justify-center text-[#8b949e] hover:text-[#d1d5db] transition-colors h-[180px]"
             >
