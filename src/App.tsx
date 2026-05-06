@@ -1,5 +1,5 @@
 import { useState, useRef } from 'react';
-import { Search, Grid, Settings, Plus, RefreshCw, LogOut, FileText, Folder, ShieldCheck, Inbox, Download, Eye, Trash2, ChevronUp, Presentation } from 'lucide-react';
+import { Grid, Settings, Plus, RefreshCw, LogOut, FileText, Folder, ShieldCheck, Inbox, Download, Eye, Trash2, ChevronUp, Presentation } from 'lucide-react';
 
 export default function App() {
   const [activeFolder, setActiveFolder] = useState('PPT');
